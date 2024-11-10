@@ -1,0 +1,70 @@
+server:
+  port: 8848
+  #设置utf-8,防止中文乱码
+  servlet:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+    tomcat:
+      #解决上传文件异常无法捕获
+      max-swallow-size: -1
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///epidemic?useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+  web:
+    resources:
+      static-locations:
+        - classpath:/static/
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+  mail:
+    host: smtp.qq.com #邮件服务器地址
+    port: 465 #端口号
+    username: 250244033@qq.com
+    password: pttinwkoumcebidi
+    default-encoding: UTF-8 #默认编码格式
+    properties:
+      mail:
+        debug: true #启动debug调试
+        smtp:
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory #SSL连接配置
+  redis:
+    host: localhost
+    port: 6379
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  elasticsearch:
+    uris: http://localhost:9200
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+User:
+  portrait-path:
+    resident: D:/yiqing/prohibit/resident/
+    staff: D:/yiqing/prohibit/staff/
+    guard: D:/yiqing/prohibit/guard/
+  acid: D:/yiqing/acid/
+  antigen: D:/yiqing/antigen/
+  backHome:
+    health: D:/yiqing/backHome/health/
+    travel: D:/yiqing/backHome/travel/
+
+
+
+
