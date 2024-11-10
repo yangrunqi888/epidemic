@@ -1,0 +1,36 @@
+diff --git a/node_modules/mockjs/dist/mock.js b/node_modules/mockjs/dist/mock.js
+index 35d5b9a..b130df7 100644
+--- a/node_modules/mockjs/dist/mock.js
++++ b/node_modules/mockjs/dist/mock.js
+@@ -8357,9 +8357,13 @@ return /******/ (function(modules) { // webpackBootstrap
+ 	    send: function send(data) {
+ 	        var that = this
+ 	        this.custom.options.body = data
+-
++			console.log("responseType",this.responseType)
+ 	        // 原生 XHR
+ 	        if (!this.match) {
++
++				if(this.responseType){
++					this.custom.xhr.responseType = this.responseType || ''
++				}
+ 	            this.custom.xhr.send(data)
+ 	            return
+ 	        }
+diff --git a/node_modules/mockjs/src/mock/xhr/xhr.js b/node_modules/mockjs/src/mock/xhr/xhr.js
+index daf2af4..f00e9fd 100644
+--- a/node_modules/mockjs/src/mock/xhr/xhr.js
++++ b/node_modules/mockjs/src/mock/xhr/xhr.js
+@@ -261,9 +261,11 @@ Util.extend(MockXMLHttpRequest.prototype, {
+     send: function send(data) {
+         var that = this
+         this.custom.options.body = data
+-
++        console.log("responseType",this.responseType)
+         // 原生 XHR
+         if (!this.match) {
++            
++            this.custom.xhr.responseType = this.responseType
+             this.custom.xhr.send(data)
+             return
+         }
